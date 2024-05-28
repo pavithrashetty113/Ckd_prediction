@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <!-- bootstrap link -->
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>CKD Result</title>
+    <style>
+            body {
+              background-image: url('static/chronic.jpg');
+              background-size: cover;
+              background-attachment: fixed;
+          }
+          h1{
+            text-align: center;
+            color: white;
+          }
+          h3{
+            text-align: center;
+            color:white;
+          }
+          .Stage2 li {
+            color: white;
+        }
+        .Stage1 li {
+            color: white;
+        }
+        .Stage3 li {
+            color: white;
+        }
+        .Stage4 li {
+            color: white;
+        }
+        .Stage5 li {
+            color: white;
+        }
+        .navbar-brand {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">CKD Prediction</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/info">Information</a>
+            <a class="nav-link" href="/algorithm">Algorithm Accuracy</a>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3">
+                <br><br><br><br>
+                <h1>Chronic Kidney Disease</h1>
+                <br><br><br><br>
+                <div class="card">
+                    <div class="card-header">
+                        
+                        <h3 style="color:black">Result</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>{{ prediction_text }}</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    {% if cure > 0 %}
+    <div class="container"><br><br>
+        <center><h3>CKD Management Guidelines</h3></center>
+        <!-- if {{cure}}==1 then show this div-->
+        {% if cure==1 %}
+
+        <div class="Stage1">
+            <p style="color: white;">It’s important to manage underlying conditions to help preserve kidney function. This may include:</p>
+            <ul>
+           <li>Work at managing blood sugar levels if you have diabetes.</li>
+            <li>Follow your doctor’s advice for lowering blood pressure if you have hypertension.</li>
+            <li>Maintain a healthy, balanced diet.</li>
+            <li>Don’t use tobacco.</li>
+            <li>Engage in physical activity for 30 minutes a day, at least 5 days a week.</li>
+            <li>Try to maintain an appropriate weight for your body.</li>
+            </ul>
+        </div>
+        {% endif %}
+        <!-- if {{cure}}==2 then show this div-->
+        {% if cure==2 %}
+        <div class="Stage2">
+            <p style="color: white;">It’s important to manage underlying conditions to help preserve kidney function. This may include:</p>
+            <ul>
+            <li>It’s time to develop a relationship with a kidney specialist. There’s no cure for CKD, but early treatment can slow or stop progression.</li>
+            <li>It’s important to address the underlying cause. If you have diabetes, high blood pressure, or heart disease, follow your doctor’s instructions for managing these conditions.</li>
+            <li>It’s also important to maintain a good diet, get regular exercise, and manage your weight. If you smoke, ask your doctor about smoking cessation programs.</li>
+            
+            </ul>
+        </div>
+        {% endif %}
+        {% if cure==3 %}
+        <div class="Stage3">
+            <p style="color: white;">It’s important to manage underlying conditions to help preserve kidney function. This may include:</p>
+            <ul>
+            <li>high blood pressure medications such as angiotensin-converting enzyme (ACE) inhibitors or angiotensin II receptor blockers</li>
+            <li>diuretics and a low salt diet to relieve fluid retention</li>
+            <li>cholesterol-lowering medications</li>
+            <li>erythropoietin supplements for anemia</li>
+            <li>vitamin D supplements to address weakening bones</li>
+            <li>phosphate binders to prevent calcification in the blood vessels</li>
+            </ul>
+        </div>
+        {% endif %}
+        {% if cure==4 %}
+        <div class="Stage4">
+            <p style="color: white;">In stage 4, you’ll need to work very closely with your doctors. In addition to the same treatment as earlier stages, you should start discussions about dialysis and kidney transplant should your kidneys fail.
+
+                These procedures take careful organization and a lot of time, so it’s wise to have a plan in place now.</p>
+        </div>
+        {% endif %}
+        {% if cure==5 %}
+        <div class="Stage5">
+            <p style="color: white;">Once you have complete kidney failure, life expectancy is only a few months without dialysis or a kidney transplant.
+
+                Dialysis isn’t a cure for kidney disease, but a process to remove waste and fluid from your blood. There are two types of dialysis, hemodialysis and peritoneal dialysis.</p>
+        </div>
+        {% endif %}
+        
+    </div>
+    {% endif %}
+    
+</body>
+</html>

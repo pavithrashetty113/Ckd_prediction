@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CKD Prediction</title>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico|Arimo|Hind:300|Open+Sans+Condensed:300" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <style>
+  body{
+    background-image: url('static/chronic.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+  }
+    .login {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: rgba(31, 70, 129, 0.5);
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.login h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color:white;
+}
+
+.login input[type="text"],
+.login input[type="password"],
+.login input[type="email"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login label {
+  font-weight: bold;
+}
+
+.login input[type="radio"] {
+  margin-right: 10px;
+}
+
+.login button {
+  background-color: #333;
+  color: #fff;
+  padding: 14px 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.login button:hover {
+  background-color: #555;
+}
+
+.login a {
+  color: #333;
+  text-decoration: none;
+}
+
+.login a:hover {
+  text-decoration: underline;
+}
+
+nav{
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  justify-content: space-between;
+}
+li{
+  float: left;
+  margin-left: 5%;
+
+}
+a{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+h1{
+  color: white;
+}
+
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">CKD Prediction</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" href="/home">Home</a>
+        <a class="nav-link" href="/info">Information</a>
+        <a class="nav-link" href="/algorithm">Algorithm Accuracy</a>
+      </div>
+    </div>
+  </nav>
+  <div class="login">
+    <h1>CKD Predictor</h1>
+    <form action="{{ url_for('predict')}}" method="post">
+      <label for="age"><b><span style="color: white;">AGE :</span></b></label>
+      <input type="text" name="age" placeholder="2 - 90" required="required" /><br>
+
+      <label for="bp"><b><span style="color: white;">BP :</span></b></label>
+      <input type="text" name="bp" placeholder="50 - 180" required="required" /><br>
+
+      <label for="sg"><b><span style="color: white;">Specific Gravity of urine (SG) :</span> </b></label>
+      <input type="text" name="sg" placeholder="1.005 - 1.025" required="required" /><br>
+
+      <label for="al"><b><span style="color: white;">Albumin (AL) :</span> </b></label>
+      <input type="text" name="al" placeholder="0 - 5" required="required" /><br>
+
+      <label for="su"><b><span style="color: white;">Sugar (SU) :</span></b></label>
+      <input type="text" name="su" placeholder="0 - 5" required="required" /><br>
+        
+      <b><span style="color: white;">RBC :</span> </b>
+      <input type="radio" name="rbc" value="1.0" id="abnormal"/>
+      <label for="abnormal"><b><span style="color: white;">Abnormal</span></b></label>
+      <input type="radio" name="rbc" value="0.0" id="normal"/>
+      <label for="normal"><b><span style="color: white;">Normal</span></b></label><br/>
+
+      <b><span style="color: white;">PC (pus cell) :</span> </b>
+      <input type="radio" name="pc" value="1.0" id="abnormalp"/>
+      <label for="abnormalp"><b><span style="color: white;">Abnormal</span></b></label>
+      <input type="radio" name="pc" value="0.0" id="normalp"/>
+      <label for="normalp"><b><span style="color: white;">Normal</span></b></label><br/>
+         
+      <b><span style="color: white;">PCC (Pus cell clumps) :</span> </b>
+      <input type="radio" name="pcc" value="1.0" id="present"/>
+      <label for="present"><b><span style="color: white;">Present</span></b></label>
+      <input type="radio" name="pcc" value="0.0" id="absent"/>
+      <label for="absent"><b><span style="color: white;">Absent</span></b></label><br/>
+
+      <b><span style="color: white;">BA (Bacteria) :</span> </b>
+      <input type="radio" name="ba" value="1.0" id="presentp"/>
+      <label for="presentp"><b><span style="color: white;">Present</span></b></label>
+      <input type="radio" name="ba" value="0.0" id="absentp"/>
+      <label for="absentp"><b><span style="color: white;">Absent</span></b></label><br/>
+         
+      <label for="bgr"><b><span style="color: white;">Blood Glucose Random (BGR) :</span></b></label>
+      <input type="text" name="bgr" placeholder="22-490" required="required" /><br>
+
+      <label for="bu"><b><span style="color: white;">Blood Urea (BU) :</span></b></label>
+      <input type="text" name="bu" placeholder="1.5 - 391.0" required="required" /><br>
+
+      <label for="sc"><b><span style="color: white;">Serum Creatinine (SC) :</span></b></label>
+      <input type="text" name="sc" placeholder="0.4 - 76.0" required="required" /><br>
+
+      <label for="sod"><b><span style="color: white;">Sodium (SOD) :</span></b></label>
+      <input type="text" name="sod" placeholder="4.5 - 163" required="required" /><br>
+
+      <label for="hemo"><b><span style="color: white;">Hemoglobin (HEMO) :</span></b></label>
+      <input type="text" name="hemo" placeholder="3.1 - 17.8" required="required" /><br>
+
+      <label for="wc"><b><span style="color: white;">WBC count (WC) :</span></b></label>
+      <input type="text" name="wc" placeholder="2200 - 26400" required="required" /><br>
+
+      <label for="rc"><b><span style="color: white;">RBC count (RC) :</span></b></label>
+      <input type="text" name="rc" placeholder="2 - 8" required="required" /><br/>
+        
+      <b><span style="color: white;">Hypertension: </span> </b>
+      <input type="radio" name="htn" value="1.0" id="yes"/>
+      <label for="yes"><b><span style="color: white;">Yes</span></b></label>
+      <input type="radio" name="htn" value="0.0" id="no"/>
+      <label for="nop"><b><span style="color: white;">No</span></b></label><br/>
+         <b><span style="color: white;">Diabetes Mellitus?: </span> </b>
+         <input type="radio" name="dm"  value=1.0 id="yesp"/>
+         <label for="yesp"><b><span style="color: white;">Yes</span></b></label>
+         <input type="radio" name="dm" value=0.0 id="nop"/>
+         <label for="nop"><b><span style="color: white;">No</span></b></label><br/>
+         
+         <b><span style="color: white;">Coronary Artery Disease?: </span> </b>
+         <input type="radio" name="cad"  value=1.0 id="yesq"/>
+         <label for="yesq"><b><span style="color: white;">Yes</span></b></label>
+         <input type="radio" name="cad" value=0.0 id="noq"/>
+         <label for="noq"><b><span style="color: white;">No</span></b></label><br/>
+         
+         <b><span style="color: white;">Appetite: </span> </b>
+		     <input type="radio" name="appet"  value=1.0 id="good"/>
+         <label for="good"><b><span style="color: white;">Good</span></b></label>
+         <input type="radio" name="appet" value=0.0 id="Bad"/>
+         <label for="appet"><b><span style="color: white;">Bad</span></b></label><br/>
+         
+         <b><span style="color: white;">Pedal Edema: </span> </b>
+         <input type="radio" name="pe"  value=1.0 id="yesq"/>
+         <label for="yesq"><b><span style="color: white;">Yes</span></b></label>
+         <input type="radio" name="pe" value=0.0 id="noq"/>
+         <label for="noq"><b><span style="color: #ffffff;">No</span></b></label><br/>
+       
+         <b><span style="color: white;">Anemia?: </span> </b>
+         <input type="radio" name="ana"  value=1.0 id="yesr"/>
+         <label for="yesr"><b><span style="color: white;">Yes</span></b></label>
+         <input type="radio" name="ana" value=0.0 id="nor"/>
+         <label for="nor"><b><span style="color: white;">No</span></b></label><br/>
+		
+      
+        
+        <button type="submit" style="background-color:rgb(11, 84, 151)" class="btn btn-primary btn-block btn-large"><b>PREDICT</b></button>
+    </form>
+
+  
+<br/>
+<br/>
+</div>
+
+
+</body>
+</html>

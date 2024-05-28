@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CKD Information</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+      body {
+        background-image: url('static/chronic.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+      }
+      h1{
+        text-align: center;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">CKD Prediction</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/home">Home </a>
+          <a class="nav-link" href="/info">Information</a>
+          <a class="nav-link active" href="/algorithm">Algorithm Accuracy<span class="sr-only">(current)</span></a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <br /><br />
+      <h1>Chronic Kidney Disease (CKD) Information</h1>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="row">
+            <div class="col-md-12 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Logistic Regression</h5>
+                  <p class="card-text"><strong>Accuracy:</strong> 0.990 (0.020)</p>
+                  <p class="card-text"><strong>train score:</strong> 1.0</p>
+                  <p class="card-text"><strong>test score: </strong> 0.9916666666666667</p>
+                  <img src="{{ url_for('static', filename='logisticregression.png') }}" alt="Logistic Regression" width="300px" height="300px" />
+                  <div id="logistic-regression"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">SVM</h5>
+                  <p class="card-text"><strong>Accuracy:</strong> 0.990 (0.020)</p>
+                  <p class="card-text"><strong>train score:</strong> 1.0</p>
+                  <p class="card-text"><strong>test score: </strong> 0.975</p>
+                  <img src="{{ url_for('static', filename='svm.png') }}" alt="SVM Confusion Matrix" width="300px" height="300px" />
+                  <div id="svm"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="row">
+            <div class="col-md-12 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">K-Nearest Neighbors Classifier</h5>
+                  <p class="card-text"><strong>Accuracy:</strong> 0.972 (0.029)</p>
+                  <p class="card-text"><strong>train score:</strong> 0.9821428571428571</p>
+                  <p class="card-text"><strong>test score: </strong> 0.975</p>
+                  <img src="{{ url_for('static', filename='kneighbours.png') }}" alt="K-Nearest" width="300px" height="300px" />
+                  <div id="knn"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Random Forest</h5>
+                  <p class="card-text"><strong>Accuracy:</strong> 0.966</p>
+                  <p class="card-text"><strong>train score:</strong> 1.0</p>
+                  <p class="card-text"><strong>test score: </strong> 0.966</p>
+                  <img src="{{ url_for('static', filename='random.png') }}" alt="Random Forest" width="300px" height="300px" />
+                  <div id="random forest"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
